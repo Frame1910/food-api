@@ -12,3 +12,9 @@ const client = async () => {
     return await new Client().open(url)
 }
 export default client;
+
+
+// Init app
+import { app } from "./api";
+const port = process.env.PORT || 8080;
+app.listen(port, () => console.log(`API available on http://localhost:${port}`))
