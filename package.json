@@ -8,7 +8,6 @@
     "start": "node lib/index.js",
     "dev": "concurrently \"tsc -w\" \"nodemon lib/index.js\""
   },
-  "type": "module",
   "keywords": [],
   "author": "",
   "license": "ISC",
