@@ -7,11 +7,11 @@ if (process.env.NODE_ENV !== 'production') {
 
 // Init Redis OM
 import { Client } from 'redis-om';
-const url = process.env.REDIS_URL;
-const client = async () => {
-    return await new Client().open(url)
+const connect = async () => {
+    const url = process.env.REDIS_URL;
+    return await new Client().open(url);
 }
-export default client;
+export default connect;
 
 
 // Init app
