@@ -14,9 +14,10 @@ app.get('/test?', (req: Request, res: Response) => {
     res.status(200).send(`Message: ${req.query['msg']}`);
 })
 
-app.get('/search', async (req: Request, res: Response) => {
+app.get('/search?', async (req: Request, res: Response) => {
     const client = await connect();
     const foodRepo = client.fetchRepository(foodSchema);
-    let foods = await foodRepo.search().where('food_name').matches('alcohol').return.all();
+    let foods = await foodRepo.searchRaw(req.query['term'].toString()).return.all();
     res.send(foods);
+    await client.close();
 })
