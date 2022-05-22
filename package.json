@@ -4,23 +4,26 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "tsc",
+    "start": "node lib/index.js",
+    "dev": "concurrently \"tsc -w\" \"nodemon lib/index.js\""
   },
-  "author": "Darren Meiring",
+  "type": "module",
+  "keywords": [],
+  "author": "",
   "license": "ISC",
   "dependencies": {
     "cors": "^2.8.5",
-    "debug": "^4.3.4",
-    "express": "^4.18.1",
-    "express-winston": "^4.2.0",
-    "winston": "^3.7.2"
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "redis-om": "^0.3.3"
   },
   "devDependencies": {
-    "@types/cors": "^2.8.12",
-    "@types/debug": "^4.1.7",
-    "@types/express": "^4.17.13",
-    "source-map-support": "^0.5.21",
-    "tslint": "^6.1.3",
-    "typescript": "^4.6.4"
+    "@types/cors": "^2.8.6",
+    "@types/express": "^4.17.6",
+    "concurrently": "^5.2.0",
+    "nodemon": "^2.0.3",
+    "tslint": "^5.12.0",
+    "typescript": "^3.2.2"
   }
 }
