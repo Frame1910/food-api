@@ -1,4 +1,5 @@
 import { config } from "dotenv";
+import { createClient } from "redis";
 
 if (process.env.NODE_ENV !== 'production') {
     config();
@@ -6,10 +7,15 @@ if (process.env.NODE_ENV !== 'production') {
 
 
 // Init Redis OM
-import { Client } from 'redis-om';
+
 const connect = async () => {
     const url = process.env.REDIS_URL;
-    return await new Client().open(url);
+    const client = createClient({
+        url: url,
+    });
+    client.on('error', (err) => console.log('Redis Client Error', err));
+    await client.connect()
+    return client;
 }
 export default connect;
 
