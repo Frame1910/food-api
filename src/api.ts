@@ -47,3 +47,9 @@ app.get('/search?', async (req: Request, res: Response) => {
     res.send(foods);
     await client.disconnect();
 })
+
+app.get('/:index', async (req: Request, res: Response) => {
+    const client = await connect();
+    let food = await client.json.get(req.params['index']);
+    res.send(food)
+})
