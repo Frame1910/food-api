@@ -18,7 +18,7 @@ app.get('/search?', async (req: Request, res: Response) => {
     let foods = await client.ft.search('Food:index', req.query['term'].toString(), {
         RETURN: ['class_name', 'food_name', 'food_desc', 'entry_type', 'public_food_key'],
         SUMMARIZE: {
-            FIELDS: ['food_desc'],
+            FIELDS: ['food_desc', 'class_name'],
             FRAGS: 1,
             LEN: 10,
         }
