@@ -9,8 +9,8 @@ app.use( express.json() )
 
 app.use( cors({ origin: true }) )
 
-app.get('/test?', (req: Request, res: Response) => {
-    res.status(200).send(`Message: ${req.query['msg']}`);
+app.get('/ping', (req: Request, res: Response) => {
+    res.status(200).send('Pong');
 })
 
 app.get('/search?', async (req: Request, res: Response) => {
@@ -44,12 +44,18 @@ app.get('/search?', async (req: Request, res: Response) => {
         }
     })
     foods.documents.sort((a, b) => b['score'] - a['score']);
-    res.send(foods);
+    res.status(200).send(foods);
     await client.disconnect();
 })
 
 app.get('/:index', async (req: Request, res: Response) => {
     const client = await connect();
     let food = await client.json.get(req.params['index']);
-    res.send(food)
+    res.status(200).send(food)
+})
+
+app.get('/nutrient/:food_key', async (req: Request, res: Response) => {
+    const client = await connect();
+    let nutrient = await client.ft.search('Nutrient:index', req.params['food_key']);
+    res.status(200).send(nutrient);
 })
